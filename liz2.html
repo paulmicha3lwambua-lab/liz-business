@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Liz & Co. | Kids Essentials, Clothing, Mother & Baby</title>
+<style>
+  :root{
+    --bg:#fdfbf8;
+    --bg-card:#ffffff;
+    --accent:#b08d57;
+    --accent-light:#e8dcc6;
+    --text:#3d342f;
+    --text-dim:#7a706a;
+    --border:#f0e8dd;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height:1.6;
+  }
+
+  /* Page System */
+  .page{display:none;animation:fadeIn 0.5s ease}
+  .page:target{display:block}
+  #home:target ~ #home,#home{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+  /* Header & Nav */
+  header{
+    position:sticky;top:0;
+    background:rgba(253,251,248,0.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    z-index:100;
+  }
+
+  nav{
+    max-width:1200px;margin:0 auto;
+    padding:18px 20px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-size:28px;font-weight:700;color:var(--text);
+    text-decoration:none;
+  }
+
+  .logo svg{width:32px;height:32px}
+
+  .nav-links{display:flex;gap:25px;list-style:none}
+  .nav-links a{
+    color:var(--text-dim);text-decoration:none;font-weight:600;
+    transition:0.3s;font-size:15px;
+  }
+  .nav-links a:hover{color:var(--accent)}
+
+  .menu-btn{display:none;background:none;border:none;font-size:28px;cursor:pointer;color:var(--text)}
+
+  /* Hero */
+  .hero{
+    text-align:center;padding:80px 20px 60px;
+    background:linear-gradient(180deg,#fff,transparent);
+  }
+
+  .hero h1{font-size:42px;margin-bottom:10px}
+  .hero p{font-size:16px;color:var(--text-dim);max-width:600px;margin:0 auto 20px}
+  .hero-sub{font-style:italic;font-size:22px;color:var(--accent);margin:20px 0 10px}
+  .hero-title{font-size:20px;font-weight:700;letter-spacing:1px;margin-bottom:15px}
+  .banner{
+    background:var(--accent-light);display:inline-block;
+    padding:10px 20px;border-radius:30px;font-weight:600;font-size:14px;
+  }
+
+  .container{max-width:1200px;margin:0 auto;padding:60px 20px}
+
+  /* Filter Buttons */
+  .filters{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:30px 0}
+  .filter-btn{
+    padding:10px 20px;border:2px solid var(--accent-light);
+    background:var(--bg-card);border-radius:30px;cursor:pointer;
+    font-weight:600;color:var(--text-dim);transition:0.3s;font-family:inherit;
+  }
+  .filter-btn.active,.filter-btn:hover{
+    background:var(--accent);color:#fff;border-color:var(--accent);
+  }
+
+  /* Cards Grid */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;margin-top:20px;
+  }
+
+  .card{
+    background:var(--bg-card);border:1px solid var(--border);
+    border-radius:18px;overflow:hidden;transition:0.3s;
+  }
+  .card.hidden{display:none}
+  .card:hover{transform:translateY(-6px);box-shadow:0 12px 25px rgba(0,0,0,0.08)}
+  .card img{width:100%;height:220px;object-fit:cover}
+  .card-content{padding:20px;text-align:center}
+  .card h3{font-size:18px;margin-bottom:8px}
+  .card p{font-size:14px;color:var(--text-dim);margin-bottom:12px}
+  .price{font-size:18px;font-weight:700;color:var(--accent)}
+
+  /* Features */
+  .features{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:25px;margin:60px 0;text-align:center;
+  }
+  .feature{background:var(--bg-card);padding:25px;border-radius:15px;border:1px solid var(--border)}
+  .feature-icon{font-size:28px;margin-bottom:10px}
+  .feature h4{margin-bottom:6px}
+
+  /* CTA */
+  .cta{
+    background:var(--accent-light);border-radius:20px;
+    padding:40px 30px;text-align:center;margin:60px 0;
+  }
+  .cta p{font-style:italic;font-size:20px;margin-bottom:15px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:#25d366;color:#fff;padding:14px 28px;
+    border-radius:50px;text-decoration:none;font-weight:700;
+    transition:0.3s;
+  }
+  .btn:hover{transform:scale(1.05)}
+
+  /* Footer */
+  footer{
+    background:var(--accent);color:#fff;text-align:center;
+    padding:15px;font-size:14px;margin-top:60px;
+  }
+
+  /* Content Pages */
+  .content{
+    max-width:800px;margin:0 auto;
+    background:var(--bg-card);padding:40px;border-radius:18px;
+    border:1px solid var(--border);
+  }
+  .content h1{margin-bottom:20px}
+  .content h2{margin:30px 0 15px;color:var(--accent)}
+  .content p,.content li{color:var(--text-dim);margin-bottom:12px}
+  .content ul{padding-left:20px}
+
+  /* Contact Box */
+  .contact-box{
+    background:var(--accent-light);padding:25px;border-radius:15px;
+    margin-top:30px;text-align:center;
+  }
+  .contact-box a{color:var(--accent);font-weight:700;text-decoration:none}
+
+  @media(max-width:700px){
+    .nav-links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--bg);flex-direction:column;padding:20px;
+      border-bottom:1px solid var(--border);
+    }
+    .nav-links.show{display:flex}
+    .menu-btn{display:block}
+    .hero h1{font-size:32px}
+    .hero-title{font-size:16px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#home" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#b08d57" stroke-width="2">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Little Liz & Co.
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" onclick="closeMenu()">Home</a></li>
+      <li><a href="#inventory" onclick="closeMenu()">Inventory</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+      <li><a href="#terms" onclick="closeMenu()">Terms</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+<section class="page" id="home">
+  <div class="hero">
+    <h1>Little Liz & Co.</h1>
+    <p>Thoughtful Picks. Little Moments. Big Love.</p>
+    <div class="hero-sub">Your one-stop shop for</div>
+    <div class="hero-title">KIDS ESSENTIALS, CLOTHING, MOTHER & BABY</div>
+    <div class="banner">Everyday Essentials for Every Little Moment ♥</div>
+  </div>
+
+  <div class="container">
+    <h2 style="text-align:center">Shop by Category</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="volodymyr-hryshchenko-7_bz84zOU7g-unsplash.jpg" alt="School Essentials">
+        <div class="card-content">
+          <h3>School Essentials</h3>
+          <p>All they need, to do their best.</p>
+          <a href="#inventory" class="price">View Items →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="balesstudio-SkWflzXpvcw-unsplash.jpg" alt="Kids Clothing">
+        <div class="card-content">
+          <h3>Kids Clothing</h3>
+          <p>Comfortable, stylish & made for play.</p>
+          <a href="#inventory" class="price">View Items →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=600" alt="Mother & Baby">
+        <div class="card-content">
+          <h3>Mother & Baby</h3>
+          <p>Thoughtful picks for you & your little one.</p>
+          <a href="#inventory" class="price">View Items →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600" alt="Gifts">
+        <div class="card-content">
+          <h3>Gifting</h3>
+          <p>Perfect for gifting special moments.</p>
+          <a href="#inventory" class="price">View Items →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">♥</div>
+        <h4>With Love</h4>
+        <p>Because every little thing matters.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✓</div>
+        <h4>Quality You Can Trust</h4>
+        <p>Carefully selected just for you.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🏷</div>
+        <h4>Affordable Finds</h4>
+        <p>Great prices for every budget.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🚚</div>
+        <h4>Countrywide Delivery</h4>
+        <p>We deliver to you, wherever you are.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <p>Let's make everyday a little easier & a lot sweeter.</p>
+      <a href="https://wa.me/254707782749" class="btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.612-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.363.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.868 11.868 0 0020.885 3.488z"/>
+        </svg>
+        Chat on WhatsApp: 0707 782 749
+      </a>
+      <p style="margin-top:10px;font-size:14px;color:var(--text-dim)">We're just a message away! ♥</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVENTORY PAGE -->
+<section class="page" id="inventory">
+  <div class="container">
+    <h1 style="text-align:center;margin-bottom:10px">Our Inventory</h1>
+    <p style="text-align:center;color:var(--text-dim);margin-bottom:10px">
+      Browse our current stock. Prices and availability may vary. 
+      <br><strong>To order, contact us on WhatsApp or call us.</strong>
+    </p>
+
+    <!-- Filter Buttons -->
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterItems('all')">All Items</button>
+      <button class="filter-btn" onclick="filterItems('school')">School Essentials</button>
+      <button class="filter-btn" onclick="filterItems('clothing')">Kids Clothing</button>
+      <button class="filter-btn" onclick="filterItems('baby')">Mother & Baby</button>
+    </div>
+
+    <div class="grid" id="productGrid">
+      <div class="card" data-category="school">
+        <img src="tamara-bellis-npFhMBCsMeM-unsplash.jpg" alt="Backpack">
+        <div class="card-content">
+          <h3>Kids Backpack</h3>
+          <p>Durable, lightweight, with multiple compartments.</p>
+          <p class="price">KSh 1,800</p>
+        </div>
+      </div>
+      <div class="card" data-category="school">
+        <img src="volodymyr-hryshchenko-7_bz84zOU7g-unsplash.jpg" alt="Stationery Set">
+        <div class="card-content">
+          <h3>Stationery Set</h3>
+          <p>Pencils, crayons, rulers - everything for school.</p>
+          <p class="price">KSh 650</p>
+        </div>
+      </div>
+      <div class="card" data-category="clothing">
+        <img src="raquel-gambin-kS3YkVtf85U-unsplash.jpg" alt="Cotton Rompers">
+        <div class="card-content">
+          <h3>Cotton Rompers 3-Pack</h3>
+          <p>Soft, breathable cotton for daily wear. Ages 0-24m.</p>
+          <p class="price">KSh 1,200</p>
+        </div>
+      </div>
+      <div class="card" data-category="clothing">
+        <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600" alt="Knitted Sweater">
+        <div class="card-content">
+          <h3>Knitted Sweater</h3>
+          <p>Warm and cozy for chilly days.</p>
+          <p class="price">KSh 950</p>
+        </div>
+      </div>
+      <div class="card" data-category="baby">
+        <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=600" alt="Baby Blanket Set">
+        <div class="card-content">
+          <h3>Baby Blanket & Towel Set</h3>
+          <p>Ultra-soft cotton. Perfect for newborns.</p>
+          <p class="price">KSh 1,500</p>
+        </div>
+      </div>
+      <div class="card" data-category="baby">
+        <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=600" alt="Feeding Set">
+        <div class="card-content">
+          <h3>Feeding Set</h3>
+          <p>Bottle, pacifier, and bib set.</p>
+          <p class="price">KSh 850</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h3>Interested in any of these products?</h3>
+      <p>Reach out to us on WhatsApp or call to place an order. We offer <strong>countrywide delivery</strong>.</p>
+      <p style="margin-top:15px;font-size:18px">
+        <a href="tel:0707782749">0707 782 749</a> | 
+        <a href="https://wa.me/254707782749">Chat on WhatsApp</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT PAGE -->
+<section class="page" id="contact">
+  <div class="container">
+    <div class="content">
+      <h1>Contact Us</h1>
+      <p>Thank you for choosing Little Liz & Co. We’re here to help you find the best for your little one.</p>
+      
+      <h2>Get in Touch</h2>
+      <p><strong>Phone/WhatsApp:</strong> <a href="tel:0707782749">0707 782 749</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/254707782749">Click to chat</a></p>
+      <p><strong>Hours:</strong> Monday - Saturday, 8:00 AM - 7:00 PM</p>
+      <p><strong>Location:</strong> Nairobi, Kenya. We deliver countrywide.</p>
+
+      <div class="contact-box">
+        <h3>How to Order</h3>
+        <p>1. Browse our inventory and note the item you like.<br>
+           2. Send us a message on WhatsApp with the item name and quantity.<br>
+           3. We’ll confirm availability, price, and delivery details.<br>
+           4. We arrange delivery to your location.</p>
+        <p style="margin-top:10px;font-size:14px;color:var(--text-dim)">
+          Note: We currently do not have an online payment gateway. Payment is arranged directly with our team.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERMS PAGE -->
+<section class="page" id="terms">
+  <div class="container">
+    <div class="content">
+      <h1>Terms & Conditions</h1>
+      <p>Last updated: October 2025</p>
+
+      <h2>1. Orders & Availability</h2>
+      <p>All products listed are subject to availability. We will confirm stock and pricing when you contact us. Prices may change without notice.</p>
+
+      <h2>2. Ordering Process</h2>
+      <p>Orders are placed via WhatsApp or phone call. Once you confirm, we will provide total cost including delivery. Payment instructions will be shared at that time.</p>
+
+      <h2>3. Delivery</h2>
+      <p>We offer delivery across Kenya. Delivery fees depend on your location and will be communicated before confirmation. Estimated delivery time is 1-3 business days for Nairobi and 3-7 days for other counties.</p>
+
+      <h2>4. Returns & Exchanges</h2>
+      <p>We accept returns for defective or damaged items within 48 hours of delivery. Items must be unused and in original packaging. Please contact us immediately if there is an issue.</p>
+
+      <h2>5. Product Care</h2>
+      <p>Product colors may vary slightly due to lighting and screen settings. Please follow care instructions on each item to maintain quality.</p>
+
+      <h2>6. Contact</h2>
+      <p>For questions about these terms, contact us at <a href="tel:0707782749">0707 782 749</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Thank you for supporting small business ♥ © 2026 Little Liz & Co.
+</footer>
+
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('show');
+  }
+  
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('show');
+  }
+
+  // Inventory filter
+  function filterItems(category) {
+    const cards = document.querySelectorAll('#productGrid .card');
+    const buttons = document.querySelectorAll('.filter-btn');
+    
+    // Update active button
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Show/hide cards
+    cards.forEach(card => {
+      if(category === 'all' || card.dataset.category === category) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
